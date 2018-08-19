@@ -6,10 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="produto")
-public class ProdutoModel {
-	private static final long serialVersionUID = 1L;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class ProdutoModel{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -17,7 +19,7 @@ public class ProdutoModel {
 	
 	private String nome;
 	
-	private Long quantidade;
+	private int quantidade;
 	
 	private float valor;
 
@@ -37,11 +39,11 @@ public class ProdutoModel {
 		this.nome = nome;
 	}
 
-	public Long getQuantidade() {
+	public int getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Long quantidade) {
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 
