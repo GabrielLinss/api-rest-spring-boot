@@ -1,7 +1,5 @@
 package com.api.produtos.model;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,34 +13,43 @@ public class ProdutoModel {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	private String nome;
-	private BigDecimal quantidade;
-	private BigDecimal valor;
 	
-	public long getId() {
+	private Long quantidade;
+	
+	private float valor;
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public BigDecimal getQuantidade() {
+
+	public Long getQuantidade() {
 		return quantidade;
 	}
-	public void setQuantidade(BigDecimal quantidade) {
+
+	public void setQuantidade(Long quantidade) {
 		this.quantidade = quantidade;
 	}
-	public BigDecimal getValor() {
+
+	public float getValor() {
 		return valor;
 	}
-	public void setValor(BigDecimal valor) {
+
+	public void setValor(float valor) {
 		this.valor = valor;
 	}
 }
