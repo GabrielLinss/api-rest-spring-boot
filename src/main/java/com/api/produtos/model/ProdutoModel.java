@@ -18,9 +18,7 @@ public class ProdutoModel{
 	private Long id;
 	
 	private String nome;
-	
 	private int quantidade;
-	
 	private float valor;
 
 	public Long getId() {
