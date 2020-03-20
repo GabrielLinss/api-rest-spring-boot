@@ -1,4 +1,4 @@
-package com.api.produtos.model;
+package com.api.produtos.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name="produto")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ProdutoModel{
+public class Product {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -69,7 +69,7 @@ public class ProdutoModel{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProdutoModel other = (ProdutoModel) obj;
+		Product other = (Product) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

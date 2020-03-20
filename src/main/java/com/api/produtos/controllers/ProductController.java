@@ -1,4 +1,4 @@
-package com.api.produtos.controller;
+package com.api.produtos.controllers;
 
 import javax.validation.Valid;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.produtos.model.ProdutoModel;
-import com.api.produtos.repository.ProdutoRepository;
+import com.api.produtos.models.Product;
+import com.api.produtos.repositories.ProductRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,29 +24,29 @@ import io.swagger.annotations.ApiOperation;
 @Api(value="API REST Produtos")
 @RestController
 @RequestMapping("/api/produto")
-public class ProdutoController {
+public class ProductController {
 	
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProductRepository produtoRepository;
 	
 	@ApiOperation(value="Retorna uma lista de todos os produtos cadastrados")
 	@GetMapping(produces="application/json")
-	public @ResponseBody Iterable<ProdutoModel> listaProdutos() {
-		Iterable<ProdutoModel> listaProdutos = produtoRepository.findAll();
+	public @ResponseBody Iterable<Product> listaProdutos() {
+		Iterable<Product> listaProdutos = produtoRepository.findAll();
 		
 		return listaProdutos;
 	}
 	
 	@ApiOperation(value="Salva um produto na base de dados")
 	@PostMapping
-	public ProdutoModel salvarProduto(@RequestBody @Valid ProdutoModel produto) {
+	public Product salvarProduto(@RequestBody @Valid Product produto) {
 		return produtoRepository.save(produto);
 	}
 	
 	@ApiOperation(value="Deleta um produto pelo id")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable Long id){
-		ProdutoModel produto = produtoRepository.getOne(id);
+		Product produto = produtoRepository.getOne(id);
 		
 		if(produto == null) {
 			return ResponseEntity.notFound().build();
@@ -59,8 +59,8 @@ public class ProdutoController {
 	
 	@ApiOperation(value="Busca um produto pelo id")
 	@GetMapping("/{id}")
-	public ResponseEntity<ProdutoModel> buscar(@PathVariable Long id){
-		ProdutoModel produto = produtoRepository.getOne(id);
+	public ResponseEntity<Product> buscar(@PathVariable Long id){
+		Product produto = produtoRepository.getOne(id);
 		
 		if(produto == null) {
 			return ResponseEntity.notFound().build();
@@ -71,8 +71,8 @@ public class ProdutoController {
 	
 	@ApiOperation(value="Atualiza um produto pelo id")
 	@PutMapping("/{id}")
-	public ResponseEntity<ProdutoModel> atualizar(@PathVariable Long id, @Valid @RequestBody ProdutoModel produto){
-		ProdutoModel produtoExistente = produtoRepository.getOne(id);
+	public ResponseEntity<Product> atualizar(@PathVariable Long id, @Valid @RequestBody Product produto){
+		Product produtoExistente = produtoRepository.getOne(id);
 		
 		if(produtoExistente == null) {
 			return ResponseEntity.notFound().build();
